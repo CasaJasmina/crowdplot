@@ -1,0 +1,43 @@
+body {
+  padding: 1px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+table{
+	float: left;
+	border-spacing: 0px 0px;
+white-space: nowrap;
+}
+tr{
+		margin: 0px;
+	padding:0px;
+}
+td {
+	width:40px;
+	height:40px;
+	margin: 0px;
+	padding:0px;
+	overflow: hidden;
+	white-space: nowrap;
+	overflow: hidden;
+    display: inline-block;
+}
+
+
+#hover{
+	width: 200px;
+	height:250px;
+	border:1px solid black;
+	float:right;
+}
+
+#svg{
+	stroke:red;
+	border:1px solid black;
+	
+
+}
