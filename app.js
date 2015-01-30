@@ -9,6 +9,7 @@ var fs=require('fs');
 
 var routes = require('./routes/index');
 var save = require('./routes/save');
+var getData = require('./routes/getData');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/save', save);
+app.use('/getData', getData);
 
 //I create a global variable where I store the location of thr root of the node project
 var path = require('path');

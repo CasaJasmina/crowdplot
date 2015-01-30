@@ -10,7 +10,7 @@ $(document).ready(function(){
 		activeCellY=$(this).attr('Y');
 
 		$("#activeCell").text("x="+activeCellX+" ,y="+activeCellY );
-
+		console.log(activeCellY);
 	});
 
 
@@ -27,6 +27,11 @@ $(document).ready(function(){
 	var curveIndex=0;
 
 	var curves=[];
+
+	var gcode="";
+
+	var pDown=20;
+	var pUp=90;
 
 	$("#svg").on( "mousemove", function( event ) {
 		$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
@@ -46,14 +51,30 @@ $(document).ready(function(){
 					strokeWidth: 10,
 					'stroke-linecap':"round"
 				});
+
 				console.log("lineStarted");
 				lastPointX=x;
 				lastPointY=y;
+
+
+				var moveToPos='G00 X'+x+' Y'+y+' \n';
+				//console.log(moveToPos);
+				gcode=gcode.concat(moveToPos);
+				var penDown='G00 Z'+pDown+' \n'; //
+				gcode=gcode.concat(penDown);
+
+
+
 			}else{
 					//console.log("drawing line"+","+lastPointX+","+lastPointY+","+x+","+y);
 					curves[curveIndex].add(s.line(lastPointX,lastPointY,x,y));
 					lastPointX=x;
 					lastPointY=y;
+
+
+					var moveToPos='G00 X'+x+' Y'+y+' \n';
+					gcode=gcode.concat(moveToPos);
+
 				}
 			}
 		});
@@ -69,7 +90,12 @@ $(document).ready(function(){
 		curveIndex++;
 		console.log("lineEnded");
 
+		
+		var penUp='G00 Z'+pUp+' \n'; //
+		gcode=gcode.concat(penUp);
+		console.log(gcode);
 	});
+
 
 	$(".back").click(function(){
 		console.log ("back");
@@ -82,14 +108,14 @@ $(document).ready(function(){
 		var svg= $("#svgWrap").html()
 		//console.log(svg);
 
-		$.post( "save", { content: svg, positionX:activeCellX, positionY:activeCellY })
+		$.post( "save", { content: svg, positionX:activeCellX, positionY:activeCellY, gcode:gcode })
 
 		.done(function( data ) {
 			//alert( "Data Loaded: " + data );
 			var d = new Date();
 
 			$("#"+activeCellX+"_"+activeCellY+" img").attr({
-				src: 'uploads/newSvg'+activeCellX+'_'+activeCellY+'_mini.png?'+d.getTime(),
+				src: 'uploads/png/'+activeCellX+'_'+activeCellY+'_mini.png?'+d.getTime(),
 			});
 		});
 
