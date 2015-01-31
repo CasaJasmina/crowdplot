@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 	var usedGcode = appRoot + "/public/uploads/usedGcode/";
 
 	var fileContent;
-
+	var fileName;
 	fs.readdir(gcodePath,function(err, files){
 		for (var i = files.length - 1; i >= 0; i--) {
 			console.log(files[i]);
@@ -23,13 +23,14 @@ router.get('/', function(req, res) {
 				if (err) {
 					throw err;
 				}
+				fileName=files[0];
 				fileContent=data;
 				console.log(data);
 
 				fs.rename(gcodePath+''+files[0], usedSVGPath+''+files[0], function(){
 
 				});
-				res.send(fileContent);
+				res.send(fileName+'\n'+fileContent);
 			});
 
 		}else{

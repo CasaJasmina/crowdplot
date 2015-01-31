@@ -22,7 +22,7 @@ router.post('/',function(req,res){
 	var newSVGPath = appRoot + "/public/uploads/newSvg/"+posx+"_"+posy+".svg";
 	var newPNGPath = appRoot + "/public/uploads/png/"+posx+"_"+posy+".png";
 	var newPNGPath_mini = appRoot + "/public/uploads/png/"+posx+"_"+posy+"_mini.png";
-	var newGCODEPath= appRoot + "/public/uploads/gcode/"+posx+"_"+posy+".gcode";
+	var newGCODEPath= appRoot + "/public/uploads/gcode/"+posx+"_"+posy;
 
 	fs.writeFile(newGCODEPath, gcode, function (err) {
 	

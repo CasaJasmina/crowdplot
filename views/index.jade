@@ -2,8 +2,8 @@ extends layout
 block content
 	h1 CrowdPlot
 
-	- var cols = 30
-	- var rows = 10
+	- var cols = 13
+	- var rows = 19
 
 	- objects = [[obj0, obj1, obj2], [obj3, obj4, obj5]]
 
@@ -22,7 +22,7 @@ block content
 	div#hover
 		div#activeCell
 		div#svgWrap
-			svg#svg(version="1.1",xmlns="http://www.w3.org/2000/svg",xmlns:xlink="http://www.w3.org/1999/xlink",width="200px",height="200px")
+			svg#svg(version="1.1",xmlns="http://www.w3.org/2000/svg",xmlns:xlink="http://www.w3.org/1999/xlink",width="400px",height="400px")
 		a.back back
 		input(
 			type='button'

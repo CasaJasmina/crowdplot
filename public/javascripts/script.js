@@ -30,8 +30,8 @@ $(document).ready(function(){
 
 	var gcode="";
 
-	var pDown=80;
-	var pUp=100;
+	var pDown=70;
+	var pUp=90;
 
 	$("#svg").on( "mousemove", function( event ) {
 		$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
@@ -62,7 +62,7 @@ $(document).ready(function(){
 				var moveToPos='F100 \n';
 				gcode=gcode.concat(moveToPos);
 
-				var moveToPos='G00 X'+x/10+' Y'+-y/10+' \n';
+				var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
 				//console.log(moveToPos);
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
@@ -77,7 +77,7 @@ $(document).ready(function(){
 					lastPointY=y;
 
 
-					var moveToPos='G00 X'+x/10+' Y'+-y/10+' \n';
+					var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
 					gcode=gcode.concat(moveToPos);
 
 				}
