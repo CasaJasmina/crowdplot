@@ -205,7 +205,7 @@ $(".undo").click(function(){
 $(".back").click(function(){
 	$("#hover").hide();
 	$('body').removeClass('stop-scrolling')
-	gcode="";
+	gcode=null;
 });
 
 $(".logo").click(function(){
@@ -224,8 +224,10 @@ $(".save").click(function(){
 		}) 
 		.done(function( data ) {
 			$("#hover").hide();
+			console.log (gcode);
 
-			gcode="";
+			gcode=null;
+			console.log (gcode);
 			//alert( "Data Loaded: " + data );
 			var d = new Date();
 			$("#hover").hide();
