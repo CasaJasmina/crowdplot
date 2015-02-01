@@ -1,15 +1,18 @@
 extends layout
 block content
-	h1 CrowdPlot
 
 	- var cols = 13
 	- var rows = 19
 
 	div.container
+
+
 		div.content
 			div.col-md-8.col-md-offset-2.col-xs-12
+				h1 CrowdPlot
 
-				table
+
+				table#table
 					thead
 					tbody
 					-for (var i = 0; i < rows; i++)
@@ -17,7 +20,7 @@ block content
 							-for (var j = 0; j < cols; j++)
 								td&attributes({'x': j},{'y': i},{'id':j+'_'+i})= subobject
 									//div.tableCell&attributes({'x': j},{'y': i})= j+' '+i
-									img.tableCell&attributes({'x': j},{'y': i})(src='uploads/png/'+j+'_'+i+'_mini.png', alt='',width='40px',height='40px') 
+									img.tableCell&attributes({'x': j},{'y': i})(src='uploads/png/'+j+'_'+i+'_mini.png', alt='',) 
 
 
 	

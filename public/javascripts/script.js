@@ -5,6 +5,14 @@ var activeArray;
 $(document).ready(function(){
 	
 
+	var t = $('#table');
+	var max_size = Math.max(t.offsetWidth,t.offsetHeight);
+	t.style.width = max_size+"px";
+	t.style.height = max_size+"px";
+
+
+
+
 	$(".tableCell").click(function() {
 		activeCellX=$(this).attr('x');
 		activeCellY=$(this).attr('Y');
@@ -85,32 +93,32 @@ $(document).ready(function(){
 		});
 
 
-	$("#svg").mousedown(function(){
-		mousepressed=true;
-	});
+$("#svg").mousedown(function(){
+	mousepressed=true;
+});
 
-	$("#svg").mouseup(function(){
-		mousepressed=false;	
-		lineStarted=false;
-		curveIndex++;
-		console.log("lineEnded");
+$("#svg").mouseup(function(){
+	mousepressed=false;	
+	lineStarted=false;
+	curveIndex++;
+	console.log("lineEnded");
 
-		
+
 		var penUp='G00 Z'+pUp+' \n'; //
 		gcode=gcode.concat(penUp);
 		console.log(gcode);
 	});
 
 
-	$(".back").click(function(){
-		console.log ("back");
-		curves[curveIndex-1].remove();
-		curveIndex--;
-	});
+$(".back").click(function(){
+	console.log ("back");
+	curves[curveIndex-1].remove();
+	curveIndex--;
+});
 
 
-	$(".save").click(function(){
-		var svg= $("#svgWrap").html()
+$(".save").click(function(){
+	var svg= $("#svgWrap").html()
 		//console.log(svg);
 
 		$.post( "save", { content: svg, positionX:activeCellX, positionY:activeCellY, gcode:gcode })
