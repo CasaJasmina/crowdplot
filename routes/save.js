@@ -32,10 +32,10 @@ router.post('/',function(req,res){
 
 	fs.writeFile(newSVGPath, newSvgContent, function (err) {
 
-		svg2png(newSVGPath, newPNGPath, function (err) {
+		//svg2png(newSVGPath, newPNGPath, function (err) {
 	    // PNGs for everyone!
 	    //console.log (err);
-		});
+		//});
 		svg2png(newSVGPath, newPNGPath_mini,0.2, function (err) {
 	    // PNGs for everyone!
 	    //console.log (err);
