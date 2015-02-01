@@ -12,6 +12,11 @@ router.get('/', function(req, res) {
 
 	var fileContent;
 	var fileName;
+
+var isUnixHiddenPath = function (path) { 
+    return (/(^|.\/)\.+[^\/\.]/g).test(path); 
+};
+
 	fs.readdir(gcodePath,function(err, files){
 		for (var i = files.length - 1; i >= 0; i--) {
 			console.log(files[i]);
@@ -28,7 +33,7 @@ router.get('/', function(req, res) {
 				if (fileName.charAt(0)=='.'){
 					fileName=files[1];
 				}
-				
+
 				fileContent=data;
 				console.log(data);
 
