@@ -92,7 +92,7 @@ $(document).ready(function(){
 					var moveToPos='F100 \n';
 					gcode=gcode.concat(moveToPos);
 
-					var moveToPos='G00 X'+x/5.2+' Y'+-y/5.2+' \n';
+					var moveToPos='G00 X'+Math.round(x/5.2*100)/100+' Y'+-Math.round(x/5.2*100)/100+' \n';
 				//console.log(moveToPos);
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
