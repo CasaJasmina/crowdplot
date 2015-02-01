@@ -212,8 +212,6 @@ $(".save").click(function(){
 			positionY:activeCellY, 
 			gcode:gcode
 		}) 
-		console.log(gcode);
-
 		.done(function( data ) {
 			$("#hover").hide();
 
