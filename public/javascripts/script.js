@@ -187,8 +187,10 @@ $("#svg").on( 'touchend mouseup', function( event ) {
 	curveIndex++;
 	console.log("lineEnded");
 	var penUp='G00 Z'+pUp+' \n'; //
+	var penUp='G00 Z'+pUp+' \n'; //
+
 	gcode=gcode.concat(penUp);
-	console.log(gcode);
+	//console.log(gcode);
 });
 
 
@@ -203,6 +205,7 @@ $(".undo").click(function(){
 $(".back").click(function(){
 	$("#hover").hide();
 	$('body').removeClass('stop-scrolling')
+	gcode="";
 });
 
 $(".logo").click(function(){
