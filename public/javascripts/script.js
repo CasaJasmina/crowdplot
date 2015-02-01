@@ -222,6 +222,7 @@ $(".save").click(function(){
 		.done(function( data ) {
 			$("#hover").hide();
 
+			gcode="";
 			//alert( "Data Loaded: " + data );
 			var d = new Date();
 			$("#hover").hide();
