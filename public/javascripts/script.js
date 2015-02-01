@@ -78,7 +78,7 @@ $(document).ready(function(){
 					curves[curveIndex].attr({
 						id:curveIndex,	
 						stroke: "#000",
-						strokeWidth: 5,
+						strokeWidth: 6,
 						'stroke-linecap':"round"
 					});
 
@@ -92,7 +92,7 @@ $(document).ready(function(){
 					var moveToPos='F100 \n';
 					gcode=gcode.concat(moveToPos);
 
-					var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
+					var moveToPos='G00 X'+x/5.2+' Y'+-y/5.2+' \n';
 				//console.log(moveToPos);
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
@@ -107,7 +107,7 @@ $(document).ready(function(){
 					lastPointY=y;
 
 
-					var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
+					var moveToPos='G00 X'+x/5.2+' Y'+-y/5.2+' \n';
 					gcode=gcode.concat(moveToPos);
 
 				}
