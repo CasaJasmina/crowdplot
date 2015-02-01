@@ -16,6 +16,16 @@ $(document).ready(function(){
 		activeCellX=$(this).attr('x');
 		activeCellY=$(this).attr('Y');
 		$("#hover").show();
+
+
+		var s = Snap("#svg");
+		Snap.load("/uploads/newSvg/"+activeCellX+"_"+activeCellY+".svg", onSVGLoaded ) ;
+		s.clear();
+		function onSVGLoaded( data ){ 
+			s.append( data );
+		}
+
+
 		$('body').addClass('stop-scrolling')
 
 		$("#activeCell").text("x="+activeCellX+" ,y="+activeCellY );
@@ -48,7 +58,6 @@ $(document).ready(function(){
 		$("#svg").on( 'touchmove mousemove ', function( event ) {
 			//event.preventDefault();
 
-			console.log("touchmove");
 
 			$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
@@ -200,8 +209,6 @@ $(".save").click(function(){
 			positionX:activeCellX, 
 			positionY:activeCellY, 
 			gcode:gcode
-		},function(){
-			$(".loading").show();
 		}) 
 		
 		
