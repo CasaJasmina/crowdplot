@@ -13,48 +13,33 @@ router.get('/', function(req, res) {
 	var fileContent;
 	var fileName;
 
-	var isUnixHiddenPath = function (path) { 
-		return (/(^|.\/)\.+[^\/\.]/g).test(path); 
-	};
-
+	
 	fs.readdir(gcodePath,function(err, files){
+		if (!err){
+			console.log (files);
+				if (files.length>0){
+
+				fileName=files[0];
+				fs.readFile(gcodePath+''+fileName , 'utf8', function (err, data) {
+					if (!err) {
+
+						fileContent=data;
+						console.log(data);
+
+						fs.rename(gcodePath+''+fileName, usedSVGPath+''+fileName, function(){});
+						res.send(fileName+'\n'+fileContent);
 
 
-
-		if (files.length>0){
-
-			fileName=files[0];
-
-
-			if(files[0].indexOf('.git') == -1){
-				fileName=files[1];
-			}
-
-
-			fs.readFile(gcodePath+''+fileName , 'utf8', function (err, data) {
-				if (err) {
-					throw err;
-				}
-
-
-
-				fileContent=data;
-				console.log(data);
-
-				fs.rename(gcodePath+''+fileName, usedSVGPath+''+fileName, function(){
-
+					}else {
+						throw err;
+					}
 				});
-				
-				res.send(fileName+'\n'+fileContent);
-
-			});
-		} else{
-			res.send("eof");
-		}
-
-	})
-
-	//res.send(fileContent);
+			}else {
+				res.send("eof");
+			}
+		}else throw err;
+	});
+	console.log("callback fired");
 });
 
 module.exports = router;

@@ -181,7 +181,7 @@ $("#svg").on( 'touchend mouseup', function( event ) {
 	console.log("lineEnded");
 	var penUp='G00 Z'+pUp+' \n'; //
 	gcode=gcode.concat(penUp);
-	console.log(gcode);
+	//console.log(gcode);
 });
 
 
@@ -212,8 +212,7 @@ $(".save").click(function(){
 			positionY:activeCellY, 
 			gcode:gcode
 		}) 
-		
-		
+		console.log(gcode);
 
 		.done(function( data ) {
 			$("#hover").hide();
