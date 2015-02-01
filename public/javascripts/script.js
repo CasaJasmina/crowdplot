@@ -92,7 +92,11 @@ $(document).ready(function(){
 					var moveToPos='F100 \n';
 					gcode=gcode.concat(moveToPos);
 
-					var moveToPos='G00 X'+Math.round(x/5.2*100)/100+' Y'+-Math.round(x/5.2*100)/100+' \n';
+
+					var newX= Math.round(x/5.2*100)/100;					
+					var newY= Math.round(y/5.2*100)/100;
+
+					var moveToPos='G00 X'+newX+' Y'+-newY+' \n';
 				//console.log(moveToPos);
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
@@ -107,7 +111,10 @@ $(document).ready(function(){
 					lastPointY=y;
 
 
-					var moveToPos='G00 X'+x/5.2+' Y'+-y/5.2+' \n';
+					var newX= Math.round(x/5.2*100)/100;					
+					var newY= Math.round(y/5.2*100)/100;
+
+					var moveToPos='G00 X'+newX+' Y'+-newY+' \n';
 					gcode=gcode.concat(moveToPos);
 
 				}
@@ -181,7 +188,7 @@ $("#svg").on( 'touchend mouseup', function( event ) {
 	console.log("lineEnded");
 	var penUp='G00 Z'+pUp+' \n'; //
 	gcode=gcode.concat(penUp);
-	//console.log(gcode);
+	console.log(gcode);
 });
 
 
