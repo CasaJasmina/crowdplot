@@ -1,12 +1,25 @@
 body {
 	padding: 1px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	background-color: 
 }
 
 a {
 	color: #00B7FF;
 }
+
+
+.logo {
+		margin:auto;
+
+	display: block;
+	background: url("/images/casajasmina-logo.png") no-repeat;
+	height: 100px;
+	width: 200px;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	color: transparent;
+}
+
 
 table{
 	margin: auto;
@@ -64,7 +77,7 @@ td {
 	text-align: center;
 	top: 0;
 	left: 0;
-		background: rgba(0,0,0,0.8);
+	background: rgba(0,0,0,0.8);
 
 }
 
@@ -79,80 +92,22 @@ td {
 
 
 .stop-scrolling {
-  height: 100%;
-  overflow: hidden;
+	height: 100%;
+	overflow: hidden;
 }
 
 
-
-.ball {
-    background-color: rgba(0,0,0,0);
-    border: 5px solid rgba(0,183,229,0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0,0,0,0);
-    border-left: 5px solid rgba(0,0,0,0);
-    border-radius: 50px;
-    box-shadow: 0 0 35px #2187e7;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    -moz-animation: spin .5s infinite linear;
-    -webkit-animation: spin .5s infinite linear;
-}
-
-.ball1 {
-    background-color: rgba(0,0,0,0);
-    border: 5px solid rgba(0,183,229,0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0,0,0,0);
-    border-left: 5px solid rgba(0,0,0,0);
-    border-radius: 50px;
-    box-shadow: 0 0 15px #2187e7;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
-    position: relative;
-    top: -50px;
-    -moz-animation: spinoff .5s infinite linear;
-    -webkit-animation: spinoff .5s infinite linear;
-}
-
-@-moz-keyframes spin {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    };
-}
-
-@-moz-keyframes spinoff {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(-360deg);
-    };
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    };
-}
-
-@-webkit-keyframes spinoff {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(-360deg);
-    };
+h1{
+	position: relative;
+	background-color: #F47A20;
+	margin-left: -10px;
+	color: #FFF;
+	left: 20px;
+	font: 112.5%/1.75 serif;
+	font-weight: 800;
+	font-family: "TyponineSans Monospace Regular 4";
+	font-size: 40px;
+	line-height: 50px;
+	text-transform: uppercase;
+	padding: 0 5px;
 }

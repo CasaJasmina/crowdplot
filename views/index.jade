@@ -14,7 +14,6 @@ block content
 					
 					h1 CrowdPlot
 
-
 					table
 						thead
 						tbody
@@ -25,7 +24,8 @@ block content
 										//div.tableCell&attributes({'x': j},{'y': i})= j+' '+i
 										img.tableCell&attributes({'x': j},{'y': i})(src='uploads/png/'+j+'_'+i+'_mini.png', alt='',) 
 
-
+					div.credits by
+					div.logo
 	
 					div#hover
 						//div#activeCell
@@ -37,8 +37,6 @@ block content
 							div.ball1
 
 						a.back.btn back
-
-						a.undo.btn back
 
 						input.btn(
 							type='button'

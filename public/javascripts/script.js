@@ -78,7 +78,7 @@ $(document).ready(function(){
 					curves[curveIndex].attr({
 						id:curveIndex,	
 						stroke: "#000",
-						strokeWidth: 6,
+						strokeWidth: 8,
 						'stroke-linecap':"round"
 					});
 
