@@ -13,37 +13,42 @@ router.get('/', function(req, res) {
 	var fileContent;
 	var fileName;
 
-var isUnixHiddenPath = function (path) { 
-    return (/(^|.\/)\.+[^\/\.]/g).test(path); 
-};
+	var isUnixHiddenPath = function (path) { 
+		return (/(^|.\/)\.+[^\/\.]/g).test(path); 
+	};
 
 	fs.readdir(gcodePath,function(err, files){
-		for (var i = files.length - 1; i >= 0; i--) {
-			console.log(files[i]);
-		}
+
+
 
 		if (files.length>0){
 
-			fs.readFile(gcodePath+''+files[0] , 'utf8', function (err, data) {
+			fileName=files[0];
+
+
+			if(files[0].indexOf('.git') == -1){
+				fileName=files[1];
+			}
+
+
+			fs.readFile(gcodePath+''+fileName , 'utf8', function (err, data) {
 				if (err) {
 					throw err;
 				}
-				fileName=files[0];
 
-				if (fileName.charAt(0)=='.'){
-					fileName=files[1];
-				}
+
 
 				fileContent=data;
 				console.log(data);
 
-				fs.rename(gcodePath+''+files[0], usedSVGPath+''+files[0], function(){
+				fs.rename(gcodePath+''+fileName, usedSVGPath+''+fileName, function(){
 
 				});
+				
 				res.send(fileName+'\n'+fileContent);
-			});
 
-		}else{
+			});
+		} else{
 			res.send("eof");
 		}
 

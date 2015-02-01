@@ -96,6 +96,7 @@ $(document).ready(function(){
 
 $("#svg").on( "mousedown touchstart", function( event ) {
 	mousepressed=true;
+	console.log("mousepressed");
 });
 
 
