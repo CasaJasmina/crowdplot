@@ -5,20 +5,21 @@ var activeArray;
 $(document).ready(function(){
 	
 
-	var t = $('#table');
-	var max_size = Math.max(t.offsetWidth,t.offsetHeight);
-	t.style.width = max_size+"px";
-	t.style.height = max_size+"px";
 
 
 
+	$("#hover").hide();
+	$(".loading").hide();
 
 	$(".tableCell").click(function() {
 		activeCellX=$(this).attr('x');
 		activeCellY=$(this).attr('Y');
+		$("#hover").show();
+		$('body').addClass('stop-scrolling')
 
 		$("#activeCell").text("x="+activeCellX+" ,y="+activeCellY );
 		console.log(activeCellY);
+
 	});
 
 
@@ -41,12 +42,12 @@ $(document).ready(function(){
 	var pDown=70;
 	var pUp=90;
 
-	$("#svg").on( "mousemove", function( event ) {
+	$("#svg").on( "mousemove touchmove", function( event ) {
 		$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
 		if (mousepressed){
-			var x = event.pageX-$("#hover").offset().left;
-			var y = event.pageY-$("#hover").offset().top;
+			var x = event.pageX-$("#svg").offset().left;
+			var y = event.pageY-$("#svg").offset().top;
 
 			$( "#log2" ).text( "svgx: " + x + ", svgy: " + y );
 
@@ -93,44 +94,66 @@ $(document).ready(function(){
 		});
 
 
-$("#svg").mousedown(function(){
+$("#svg").on( "mousedown touchstart", function( event ) {
 	mousepressed=true;
 });
 
-$("#svg").mouseup(function(){
+
+$("#svg").on( "mouseup touchend", function( event ) {
 	mousepressed=false;	
 	lineStarted=false;
 	curveIndex++;
 	console.log("lineEnded");
+	var penUp='G00 Z'+pUp+' \n'; //
+	gcode=gcode.concat(penUp);
+	console.log(gcode);
+});
 
 
-		var penUp='G00 Z'+pUp+' \n'; //
-		gcode=gcode.concat(penUp);
-		console.log(gcode);
-	});
 
-
-$(".back").click(function(){
+$(".undo").click(function(){
 	console.log ("back");
 	curves[curveIndex-1].remove();
 	curveIndex--;
 });
+
+$(".back").click(function(){
+	$("#hover").hide();
+	$('body').removeClass('stop-scrolling')
+});
+
 
 
 $(".save").click(function(){
 	var svg= $("#svgWrap").html()
 		//console.log(svg);
 
-		$.post( "save", { content: svg, positionX:activeCellX, positionY:activeCellY, gcode:gcode })
+		$.post( "save", { 
+			content: svg, 
+			positionX:activeCellX, 
+			positionY:activeCellY, 
+			gcode:gcode
+		},function(){
+			$(".loading").show();
+		}) 
+		
+		
 
 		.done(function( data ) {
+			$("#hover").hide();
+
 			//alert( "Data Loaded: " + data );
 			var d = new Date();
+			$("#hover").hide();
+			$('body').removeClass('stop-scrolling')
+
 
 			$("#"+activeCellX+"_"+activeCellY+" img").attr({
 				src: 'uploads/png/'+activeCellX+'_'+activeCellY+'_mini.png?'+d.getTime(),
 			});
 		});
+
+
 
 
 	});

@@ -24,6 +24,11 @@ router.get('/', function(req, res) {
 					throw err;
 				}
 				fileName=files[0];
+
+				if (fileName.charAt(0)=='.'){
+					fileName=files[1];
+				}
+				
 				fileContent=data;
 				console.log(data);
 
