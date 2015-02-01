@@ -198,7 +198,9 @@ $(".back").click(function(){
 	$('body').removeClass('stop-scrolling')
 });
 
-
+$(".logo").click(function(){
+	window.location.replace("http://casajasmina.arduino.cc");
+});
 
 $(".save").click(function(){
 	var svg= $("#svgWrap").html()
