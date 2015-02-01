@@ -1,19 +1,25 @@
 body {
-  padding: 1px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 1px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 
 table{
-	float: left;
+	margin: auto;
 	border-spacing: 0px 0px;
-white-space: nowrap;
+	white-space: nowrap;
+}
+
+img.tableCell{
+	width: 40px;
+	height: 40px;
+
 }
 tr{
-		margin: 0px;
+	margin: 0px;
 	padding:0px;
 }
 td {
@@ -24,7 +30,7 @@ td {
 	overflow: hidden;
 	white-space: nowrap;
 	overflow: hidden;
-    display: inline-block;
+	display: inline-block;
 }
 
 
@@ -38,6 +44,7 @@ td {
 #svg{
 	stroke:red;
 	border:1px solid black;
+	float:left;
 	
 
 }
