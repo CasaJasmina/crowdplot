@@ -11,6 +11,7 @@ $(document).ready(function(){
 	$("#hover").hide();
 	$(".loading").hide();
 
+
 	$(".tableCell").click(function() {
 		activeCellX=$(this).attr('x');
 		activeCellY=$(this).attr('Y');
@@ -42,36 +43,47 @@ $(document).ready(function(){
 	var pDown=70;
 	var pUp=90;
 
-	$("#svg").on( "mousemove touchmove", function( event ) {
-		$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
-		if (mousepressed){
-			var x = event.pageX-$("#svg").offset().left;
-			var y = event.pageY-$("#svg").offset().top;
+	//$("#svg").on("vmousemove",function(event){
+		$("#svg").on( 'touchmove mousemove ', function( event ) {
+			//event.preventDefault();
 
-			$( "#log2" ).text( "svgx: " + x + ", svgy: " + y );
+			console.log("touchmove");
 
-			if(!lineStarted){
-				lineStarted=true;
-				curves[curveIndex]=s.g();
-				curves[curveIndex].attr({
-					id:curveIndex,	
-					stroke: "#000",
-					strokeWidth: 2,
-					'stroke-linecap':"round"
-				});
+			$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
 
-				console.log("lineStarted");
-				lastPointX=x;
-				lastPointY=y;
 
-				var moveToPos='G90 \n';
-				gcode=gcode.concat(moveToPos);
+			if (mousepressed){
+				var y = event.originalEvent.touches ?  event.originalEvent.touches[0].pageY : event.pageY;
+				var x = event.originalEvent.touches ?  event.originalEvent.touches[0].pageX : event.pageX;
 
-				var moveToPos='F100 \n';
-				gcode=gcode.concat(moveToPos);
+				x-=$("#svg").offset().left;
+				y-=$("#svg").offset().top;
 
-				var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
+
+				$( "#log2" ).text( "svgx: " + x + ", svgy: " + y );
+
+				if(!lineStarted){
+					lineStarted=true;
+					curves[curveIndex]=s.g();
+					curves[curveIndex].attr({
+						id:curveIndex,	
+						stroke: "#000",
+						strokeWidth: 5,
+						'stroke-linecap':"round"
+					});
+
+					console.log("lineStarted");
+					lastPointX=x;
+					lastPointY=y;
+
+					var moveToPos='G90 \n';
+					gcode=gcode.concat(moveToPos);
+
+					var moveToPos='F100 \n';
+					gcode=gcode.concat(moveToPos);
+
+					var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
 				//console.log(moveToPos);
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
@@ -91,16 +103,69 @@ $(document).ready(function(){
 
 				}
 			}
-		});
+		})
+
+	// $("#svg").on( " mousemove ", function( event ) {
 
 
-$("#svg").on( "mousedown touchstart", function( event ) {
+	// 	$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
+
+	// 	if (mousepressed){
+	// 		var x = event.pageX-$("#svg").offset().left;
+	// 		var y = event.pageY-$("#svg").offset().top;
+
+	// 		$( "#log2" ).text( "svgx: " + x + ", svgy: " + y );
+
+	// 		if(!lineStarted){
+	// 			lineStarted=true;
+	// 			curves[curveIndex]=s.g();
+	// 			curves[curveIndex].attr({
+	// 				id:curveIndex,	
+	// 				stroke: "#000",
+	// 				strokeWidth: 5,
+	// 				'stroke-linecap':"round"
+	// 			});
+
+	// 			console.log("lineStarted");
+	// 			lastPointX=x;
+	// 			lastPointY=y;
+
+	// 			var moveToPos='G90 \n';
+	// 			gcode=gcode.concat(moveToPos);
+
+	// 			var moveToPos='F100 \n';
+	// 			gcode=gcode.concat(moveToPos);
+
+	// 			var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
+	// 			//console.log(moveToPos);
+	// 			gcode=gcode.concat(moveToPos);
+	// 			var penDown='G00 Z'+pDown+' \n'; //
+	// 			gcode=gcode.concat(penDown);
+
+
+
+	// 		}else{
+	// 				//console.log("drawing line"+","+lastPointX+","+lastPointY+","+x+","+y);
+	// 				curves[curveIndex].add(s.line(lastPointX,lastPointY,x,y));
+	// 				lastPointX=x;
+	// 				lastPointY=y;
+
+
+	// 				var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
+	// 				gcode=gcode.concat(moveToPos);
+
+	// 			}
+	// 		}
+	// 	});
+
+$("#svg").on( 'touchstart mousedown ', function( event ) {
 	mousepressed=true;
-	console.log("mousepressed");
+	//console.log("mousepressed");
 });
 
 
-$("#svg").on( "mouseup touchend", function( event ) {
+
+$("#svg").on( 'touchend mouseup', function( event ) {
 	mousepressed=false;	
 	lineStarted=false;
 	curveIndex++;
@@ -109,6 +174,7 @@ $("#svg").on( "mouseup touchend", function( event ) {
 	gcode=gcode.concat(penUp);
 	console.log(gcode);
 });
+
 
 
 
