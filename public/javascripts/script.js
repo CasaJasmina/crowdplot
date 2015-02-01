@@ -101,10 +101,11 @@ $(document).ready(function(){
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
 				gcode=gcode.concat(penDown);
+var penDown='G00 Z'+pDown+' \n'; //
+gcode=gcode.concat(penDown);
 
 
-
-			}else{
+}else{
 					//console.log("drawing line"+","+lastPointX+","+lastPointY+","+x+","+y);
 					curves[curveIndex].add(s.line(lastPointX,lastPointY,x,y));
 					lastPointX=x;
