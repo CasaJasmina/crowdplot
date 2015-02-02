@@ -1,1 +1,0 @@
-web: DEBUG=myapp ./bin/www
