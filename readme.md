@@ -2,6 +2,11 @@
 
 Crowdplot is a connected vertical plotter machine that sketch images drawn by user trough a webapp. 
 
+
+![alt tag](https://raw.github.com/CasaJasmina/crowdplot/master/crowdplot.gif)
+
+
+
 The web app is in charge of letting people draw and generate a gcode;
 A processing sketch fetch the Gcode, does some conversions and send it to the Arduino;
 The Arduino does the rest! it parse the gcode and activates the motors:
