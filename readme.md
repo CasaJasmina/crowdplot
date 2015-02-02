@@ -18,5 +18,5 @@ The Arduino does the rest! it parse the gcode and activates the motors:
 
 ##CREDITS
 - The project was done by Lorenzo Romagnoli, assisted by Gianluca Owen and Federico Vanzati.
-- The mechanics is based on [OpenWall (https://github.com/crassociati/openWall)] by [Pietro Leoni (pietroleoni.com)]
-- The Arduino Firmware is a modified version of [MakeLangelo (https://github.com/MarginallyClever/Makelangelo)]
+- The mechanics is based on [OpenWall](https://github.com/crassociati/openWall) by [Pietro Leoni](pietroleoni.com)
+- The Arduino Firmware is a modified version of [MakeLangelo](https://github.com/MarginallyClever/Makelangelo)
