@@ -4,10 +4,6 @@ var activeArray;
 
 $(document).ready(function(){
 	
-
-
-
-
 	$("#hover").hide();
 	$(".loading").hide();
 
@@ -16,7 +12,6 @@ $(document).ready(function(){
 		activeCellX=$(this).attr('x');
 		activeCellY=$(this).attr('Y');
 		$("#hover").show();
-
 
 		var s = Snap("#svg");
 		Snap.load("/uploads/newSvg/"+activeCellX+"_"+activeCellY+".svg", onSVGLoaded ) ;
@@ -101,11 +96,11 @@ $(document).ready(function(){
 				gcode=gcode.concat(moveToPos);
 				var penDown='G00 Z'+pDown+' \n'; //
 				gcode=gcode.concat(penDown);
-var penDown='G00 Z'+pDown+' \n'; //
-gcode=gcode.concat(penDown);
+				var penDown='G00 Z'+pDown+' \n'; //
+				gcode=gcode.concat(penDown);
 
 
-}else{
+				}else{
 					//console.log("drawing line"+","+lastPointX+","+lastPointY+","+x+","+y);
 					curves[curveIndex].add(s.line(lastPointX,lastPointY,x,y));
 					lastPointX=x;
@@ -122,58 +117,6 @@ gcode=gcode.concat(penDown);
 			}
 		})
 
-	// $("#svg").on( " mousemove ", function( event ) {
-
-
-	// 	$( "#log1" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
-
-	// 	if (mousepressed){
-	// 		var x = event.pageX-$("#svg").offset().left;
-	// 		var y = event.pageY-$("#svg").offset().top;
-
-	// 		$( "#log2" ).text( "svgx: " + x + ", svgy: " + y );
-
-	// 		if(!lineStarted){
-	// 			lineStarted=true;
-	// 			curves[curveIndex]=s.g();
-	// 			curves[curveIndex].attr({
-	// 				id:curveIndex,	
-	// 				stroke: "#000",
-	// 				strokeWidth: 5,
-	// 				'stroke-linecap':"round"
-	// 			});
-
-	// 			console.log("lineStarted");
-	// 			lastPointX=x;
-	// 			lastPointY=y;
-
-	// 			var moveToPos='G90 \n';
-	// 			gcode=gcode.concat(moveToPos);
-
-	// 			var moveToPos='F100 \n';
-	// 			gcode=gcode.concat(moveToPos);
-
-	// 			var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
-	// 			//console.log(moveToPos);
-	// 			gcode=gcode.concat(moveToPos);
-	// 			var penDown='G00 Z'+pDown+' \n'; //
-	// 			gcode=gcode.concat(penDown);
-
-
-
-	// 		}else{
-	// 				//console.log("drawing line"+","+lastPointX+","+lastPointY+","+x+","+y);
-	// 				curves[curveIndex].add(s.line(lastPointX,lastPointY,x,y));
-	// 				lastPointX=x;
-	// 				lastPointY=y;
-
-
-	// 				var moveToPos='G00 X'+x/4+' Y'+-y/4+' \n';
-	// 				gcode=gcode.concat(moveToPos);
-
-	// 			}
-	// 		}
-	// 	});
 
 $("#svg").on( 'touchstart mousedown ', function( event ) {
 	mousepressed=true;
@@ -227,7 +170,7 @@ $(".save").click(function(){
 			$("#hover").hide();
 			console.log (gcode);
 
-			gcode=null;
+			gcode="";
 			console.log (gcode);
 			//alert( "Data Loaded: " + data );
 			var d = new Date();

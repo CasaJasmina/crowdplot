@@ -10,24 +10,29 @@ router.get('/', function(req, res) {
 });
 
 router.post('/',function(req,res){
-	console.log("new get req");
+	//console.log("new get req");
 
 	var newSvgContent=req.body.content;
 	var posx=req.body.positionX;
 	var posy=req.body.positionY;
 	var gcode=req.body.gcode;
 
-	console.log(newSvgContent);
+	//console.log(newSvgContent);
+	//console.log(gcode);
+
+
+	var time=Date.now();
+	//console.log(time);
 
 	var newSVGPath = appRoot + "/public/uploads/newSvg/"+posx+"_"+posy+".svg";
 	var newPNGPath = appRoot + "/public/uploads/png/"+posx+"_"+posy+".png";
 	var newPNGPath_mini = appRoot + "/public/uploads/png/"+posx+"_"+posy+"_mini.png";
-	var newGCODEPath= appRoot + "/public/uploads/gcode/"+posx+"_"+posy;
+	var newGCODEPath= appRoot + "/public/uploads/gcode/"+posx+"_"+posy+"_"+time;
 
 	fs.writeFile(newGCODEPath, gcode, function (err) {
-	
-	console.log(err);
-	
+
+		console.log(err);
+
 	});
 
 	fs.writeFile(newSVGPath, newSvgContent, function (err) {
@@ -36,14 +41,14 @@ router.post('/',function(req,res){
 	    // PNGs for everyone!
 	    //console.log (err);
 		//});
-		svg2png(newSVGPath, newPNGPath_mini,0.2, function (err) {
+	svg2png(newSVGPath, newPNGPath_mini,0.2, function (err) {
 	    // PNGs for everyone!
 	    //console.log (err);
 	    res.redirect("back");
-		});
-
-		console.log(err);
 	});
+
+	console.log(err);
+});
 
 });
 

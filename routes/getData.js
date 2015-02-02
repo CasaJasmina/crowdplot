@@ -16,15 +16,22 @@ router.get('/', function(req, res) {
 	
 	fs.readdir(gcodePath,function(err, files){
 		if (!err){
-			console.log (files);
-				if (files.length>0){
+			//console.log (files);
+			if (files.length>1){
 
-				fileName=files[0];
+				if (/^\./.test(files[0])){
+				//	console.log ("here is your git");
+					fileName=files[1];
+
+				}else{
+				//	console.log ("no hidden file");
+				}
+
 				fs.readFile(gcodePath+''+fileName , 'utf8', function (err, data) {
 					if (!err) {
 
 						fileContent=data;
-						console.log(data);
+				//		console.log(data);
 
 						fs.rename(gcodePath+''+fileName, usedSVGPath+''+fileName, function(){});
 						res.send(fileName+'\n'+fileContent);
