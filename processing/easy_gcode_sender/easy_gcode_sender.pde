@@ -47,7 +47,8 @@ int nCellY=19;
 int monitorScaleFactor=4;
 void setup() {
 
-  size(PlotterWidth/8+200, PlotterHeight/8);  // Stage size
+  background(20, 20, 20);
+  size(PlotterWidth/monitorScaleFactor+200, PlotterHeight/monitorScaleFactor);  // Stage size
   noStroke(); 
   printArray(Serial.list());
   try {
@@ -59,19 +60,45 @@ void setup() {
   catch(Exception e) {
     println(e);
   }
-  
+
+  cp5 = new ControlP5(this);
+
+  Group g1 = cp5.addGroup("MOVE")
+    .setPosition(PlotterWidth/monitorScaleFactor+50, 20)
+      .setBackgroundHeight(100)
+        .setBackgroundColor(color(255, 50))
+          ;
+
+  cp5.addBang("up")
+    .setPosition(10, 30)
+      .setSize(20, 20)
+        .setGroup(g1)
+          ;
+
+  cp5.addBang("down")
+    .setPosition(30, 10)
+      .setSize(20, 20)
+        .setGroup(g1)
+          ;
+  cp5.addBang("left")
+    .setPosition(50, 30)
+      .setSize(20, 20)
+        .setGroup(g1)
+          ;
+  cp5.addBang("right")
+    .setPosition(30, 50)
+      .setSize(20, 20)
+        .setGroup(g1)
+          ;
+
   plotter=new GCodeSender(mySerial);
   GCodeInit();
-
-  //CheckForNewGcode= new TimedEventGenerator(this, "newDownload");
-  //CheckForNewGcode.setIntervalMs(5000);
 }
 
 void draw() {
-  background(255);
+  background(20, 20, 20);
 
   refreshGrid();
-
 }
 
 
@@ -87,7 +114,6 @@ void serialEvent(Serial p) {
 }
 
 void refreshGrid() {
-  background(255);
   for (int i=0; i<nCellX; i++) {
     for (int j=0; j<nCellY; j++) {
       stroke(0);
